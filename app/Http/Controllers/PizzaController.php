@@ -29,6 +29,7 @@ public function edit($id)
     return inertia('Pizzas/Edit', ['pizza' => $pizza]);
 }
 
+
 public function update(Request $request, $id)
 {
     $pizza = Pizza::findOrFail($id);
