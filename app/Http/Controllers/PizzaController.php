@@ -35,6 +35,4 @@ public function update(Request $request, $id)
     $pizza->update($request->all());
     return redirect()->route('pizzas.index')->with('success', 'Pizza updated successfully!');
 }
-
-
 }
