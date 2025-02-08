@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('pizzas', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
+            $table->string('order_id', 6);
             $table->string('name');
             $table->string('size');
             $table->string('crust');

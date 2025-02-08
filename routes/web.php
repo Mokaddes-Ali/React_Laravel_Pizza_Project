@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\PizzaController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -13,6 +14,13 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+
+Route::get('/pizzas', [PizzaController::class, 'index'])->name('pizzas.index');
+Route::get('/pizzas/{id}', [PizzaController::class, 'show'])->name('pizzas.show');
+Route::get('/pizzas/{id}/edit', [PizzaController::class, 'edit'])->name('pizzas.edit');
+Route::post('/pizzas/{id}', [PizzaController::class, 'update'])->name('pizzas.update');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

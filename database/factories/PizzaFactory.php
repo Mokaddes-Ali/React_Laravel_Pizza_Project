@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Pizza;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,21 +11,19 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PizzaFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Pizza::class;
+
     public function definition(): array
     {
         return [
-            'id' => $this->faker->randomDigitNot(0),
-            'user_id' => $this->faker->randomDigitNot(0),
+            'order_id' => $this->faker->unique()->numberBetween(100000, 999999),
+            'user_id' => User::factory(),
             'name' => $this->faker->word,
             'size' => $this->faker->randomElement(['small', 'medium', 'large']),
             'crust' => $this->faker->randomElement(['Normal','Thin', 'Garlic']),
             'toppings' => $this->faker->randomElement(['Pepperoni', 'Mushrooms', 'Onions', 'Sausage', 'Bacon']),
-            'status' => $this->faker->randomElement(['Ordered', 'Preparing','Bsking','Checking', 'Ready', 'Delivered']),
+            'status' => $this->faker->randomElement(['Ordered', 'Preparing', 'Baking', 'Checking', 'Ready', 'Delivered']),
         ];
     }
 }
+
